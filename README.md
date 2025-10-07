@@ -5,9 +5,9 @@
 ```js
 email: {
   config: {
-    provider: 'strapi-provider-email-resend-v5',
+    provider: 'strapi-provider-email-notisend',
     providerOptions: {
-      apiKey: process.env.RESEND_API_KEY,
+      apiKey: process.env.NOTISEND_API_KEY,
     },
     settings: {
       defaultFrom: 'no-reply@yourdomain.com',
