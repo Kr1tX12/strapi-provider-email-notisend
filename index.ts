@@ -27,8 +27,12 @@ export = {
   init(providerOptions: ProviderOptions, settings: Settings) {
     const API_URL = "https://api.notisend.ru/v1/email/messages";
 
+    
     return {
       send: async (options: SendOptions): Promise<void> => {
+        console.log("SENDING EMAIL with options:", options)
+        console.log('with options2:', options)
+        console.log('with settings', settings)
         const {
           from = settings.defaultFrom,
           replyTo = settings.defaultReplyTo,
