@@ -4,6 +4,9 @@ module.exports = {
         const API_URL = "https://api.notisend.ru/v1/email/messages";
         return {
             send: async (options) => {
+                console.log("SENDING EMAIL with options:", options);
+                console.log('with options2:', options);
+                console.log('with settings', settings);
                 const { from = settings.defaultFrom, replyTo = settings.defaultReplyTo, to, cc, bcc, subject, text, html, from_name, payment = "subscriber_priority", smtp_headers, attachments, ...rest } = options;
                 try {
                     const payload = {
