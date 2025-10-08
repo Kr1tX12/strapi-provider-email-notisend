@@ -23,16 +23,17 @@ interface ProviderOptions {
   apiKey: string;
 }
 
+const sanitizeEmail = (from: string) => {
+  const match = from?.match(/<(.+)>/);
+  return match ? match[1] : from;
+};
+
 export = {
   init(providerOptions: ProviderOptions, settings: Settings) {
     const API_URL = "https://api.notisend.ru/v1/email/messages";
 
-    
     return {
       send: async (options: SendOptions): Promise<void> => {
-        console.log("SENDING EMAIL with options:", options)
-        console.log('with options2:', options)
-        console.log('with settings', settings)
         const {
           from = settings.defaultFrom,
           replyTo = settings.defaultReplyTo,
@@ -51,7 +52,7 @@ export = {
 
         try {
           const payload = {
-            from_email: from,
+            from_email: sanitizeEmail(from),
             from_name,
             to: Array.isArray(to) ? to.join(",") : to,
             subject,
